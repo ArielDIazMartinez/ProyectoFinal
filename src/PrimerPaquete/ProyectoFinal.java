@@ -18,8 +18,9 @@ import javax.swing.JMenuItem;
 public class ProyectoFinal {
 
 	private JFrame frmLogin;
-	private JTextField textField;
-	private JTextField textField_1;
+	JTextField textField1,textField2;
+	JButton Button1,Button2;
+	JLabel Label1,Label2;
 
 	/**
 	 * Launch the application.
@@ -54,42 +55,44 @@ public class ProyectoFinal {
 		frmLogin.setBounds(100, 100, 566, 219);
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
+		frmLogin.setResizable(false);
+		frmLogin.setLocationRelativeTo(null);
 		
-		JButton btnNewButton = new JButton("INICIAR");
-		btnNewButton.setBackground(Color.BLACK);
-		btnNewButton.setForeground(Color.RED);
-		btnNewButton.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnNewButton.setBounds(416, 113, 124, 34);
-		frmLogin.getContentPane().add(btnNewButton);
+		JButton Button1= new JButton("INICIAR");
+	    Button1.setBackground(Color.BLACK);
+		Button1.setForeground(Color.RED);
+		Button1.setFont(new Font("Verdana", Font.BOLD, 14));
+		Button1.setBounds(416, 113, 124, 34);
+		frmLogin.getContentPane().add(Button1);
 		
-		JButton btnNewButton_1 = new JButton("X");
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setForeground(Color.RED);
-		btnNewButton_1.setFont(new Font("Verdana", Font.BOLD, 14));
-		btnNewButton_1.setBounds(493, 0, 57, 37);
-		frmLogin.getContentPane().add(btnNewButton_1);
+		Button2 = new JButton("X");
+		Button2.setBackground(Color.WHITE);
+		Button2.setForeground(Color.RED);
+		Button2.setFont(new Font("Verdana", Font.BOLD, 14));
+		Button2.setBounds(493, 0, 57, 37);
+		frmLogin.getContentPane().add(Button2);
 		
-		JLabel lblNewLabel = new JLabel("USUARIO : ");
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
-		lblNewLabel.setBounds(54, 54, 103, 23);
-		frmLogin.getContentPane().add(lblNewLabel);
+		Label1 = new JLabel("USUARIO: ");
+		Label1.setForeground(Color.RED);
+		Label1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
+		Label1.setBounds(54, 54, 103, 23);
+		frmLogin.getContentPane().add(Label1);
 		
-		JLabel lblNewLabel_1 = new JLabel("CONTRASE\u00D1A :");
-		lblNewLabel_1.setForeground(Color.RED);
-		lblNewLabel_1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
-		lblNewLabel_1.setBounds(54, 88, 127, 28);
-		frmLogin.getContentPane().add(lblNewLabel_1);
+		Label2 = new JLabel("CONTRASE\u00D1A :");
+		Label2.setForeground(Color.RED);
+		Label2.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
+		Label2.setBounds(54, 88, 127, 28);
+		frmLogin.getContentPane().add(Label2);
 		
-		textField = new JTextField();
-		textField.setBounds(185, 55, 150, 23);
-		frmLogin.getContentPane().add(textField);
-		textField.setColumns(10);
+		textField1 = new JTextField();
+		textField1.setBounds(185, 55, 150, 23);
+		frmLogin.getContentPane().add(textField1);
+		textField1.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(185, 91, 150, 24);
-		frmLogin.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		textField2 = new JTextField();
+		textField2.setBounds(185, 91, 150, 24);
+		frmLogin.getContentPane().add(textField2);
+		textField2.setColumns(10);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
