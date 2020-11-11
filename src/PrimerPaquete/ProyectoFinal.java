@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import PaqueteFarmacia.IncFarmacia;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JMenuBar;
@@ -14,13 +17,15 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
 
-public class ProyectoFinal {
+public class ProyectoFinal extends JFrame{
 
 	private JFrame frmLogin;
-	JTextField textField1,textField2;
-	JButton Button1,Button2;
+	JTextField usser;
+	JButton Button1,Cerrar;
 	JLabel Label1,Label2;
+	private JPasswordField jpass;
 
 	/**
 	 * Launch the application.
@@ -53,24 +58,61 @@ public class ProyectoFinal {
 		frmLogin.setTitle("LOGIN");
 		frmLogin.getContentPane().setBackground(Color.BLACK);
 		frmLogin.setBounds(100, 100, 566, 219);
-		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 		frmLogin.setResizable(false);
 		frmLogin.setLocationRelativeTo(null);
 		
-		JButton Button1= new JButton("INICIAR");
-	    Button1.setBackground(Color.BLACK);
-		Button1.setForeground(Color.RED);
-		Button1.setFont(new Font("Verdana", Font.BOLD, 14));
-		Button1.setBounds(416, 113, 124, 34);
-		frmLogin.getContentPane().add(Button1);
+		JButton INICIAR= new JButton("INICIAR");
+		INICIAR.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				char[] array = jpass.getPassword();
+				String Contraseña = new String(array);
+
+				if (usser.getText().equals("admin") && Contraseña.equals("1234")) {
+					dispose();
+					
+					JOptionPane.showMessageDialog(null, "USUARIO ADMINISTRADOR INICIADO");
+				    JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
+
+					IncFarmacia farm = new IncFarmacia();
+					farm.setVisible(true);
+							
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Usser or Password Incorrect","ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+
+			}
+
+			
+				
+			
+		});
+	    INICIAR.setBackground(Color.BLACK);
+		INICIAR.setForeground(Color.RED);
+		INICIAR.setFont(new Font("Verdana", Font.BOLD, 14));
+		INICIAR.setBounds(416, 113, 124, 34);
+		frmLogin.getContentPane().add(INICIAR);
 		
-		Button2 = new JButton("X");
-		Button2.setBackground(Color.WHITE);
-		Button2.setForeground(Color.RED);
-		Button2.setFont(new Font("Verdana", Font.BOLD, 14));
-		Button2.setBounds(493, 0, 57, 37);
-		frmLogin.getContentPane().add(Button2);
+		Cerrar = new JButton("X");
+		Cerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		Cerrar.setBackground(Color.WHITE);
+		Cerrar.setForeground(Color.RED);
+		Cerrar.setFont(new Font("Verdana", Font.BOLD, 18));
+		Cerrar.setBounds(493, 0, 57, 37);
+		frmLogin.getContentPane().add(Cerrar);
 		
 		Label1 = new JLabel("USUARIO: ");
 		Label1.setForeground(Color.RED);
@@ -84,15 +126,14 @@ public class ProyectoFinal {
 		Label2.setBounds(54, 88, 127, 28);
 		frmLogin.getContentPane().add(Label2);
 		
-		textField1 = new JTextField();
-		textField1.setBounds(185, 55, 150, 23);
-		frmLogin.getContentPane().add(textField1);
-		textField1.setColumns(10);
+		usser = new JTextField();
+		usser.setBounds(185, 55, 150, 23);
+		frmLogin.getContentPane().add(usser);
+		usser.setColumns(10);
 		
-		textField2 = new JTextField();
-		textField2.setBounds(185, 91, 150, 24);
-		frmLogin.getContentPane().add(textField2);
-		textField2.setColumns(10);
+		jpass = new JPasswordField();
+		jpass.setBounds(185, 92, 150, 24);
+		frmLogin.getContentPane().add(jpass);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
