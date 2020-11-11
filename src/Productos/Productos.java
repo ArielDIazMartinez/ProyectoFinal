@@ -1,34 +1,34 @@
 package Productos;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.BoxLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
 import com.toedter.calendar.JDateChooser;
 
-public class addProductos {
+public class Productos extends JFrame {
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField textField1,textField2, textField3, textField4, textField5;
 	private JTable table;
 	private JButton Button1,Button2, Button3, Button4, Button5;
 	private JLabel  Label1, Label2,Label3, Label4,Label5,Label6,Label7,Label8;
-	private JPanel panel_1,panel_2, panel_3;
-
-
+	private JPanel panel, panel_1,panel_2, panel_3;
 
 	/**
 	 * Launch the application.
@@ -37,8 +37,8 @@ public class addProductos {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					addProductos window = new addProductos();
-					window.frame.setVisible(true);
+					Productos frame = new Productos();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,27 +47,21 @@ public class addProductos {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
-	public addProductos() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setSize(850, 600);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public Productos() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(850, 600);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Buscar Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 50, 813, 263);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 	    Label1 = new JLabel("Buscar:");
@@ -107,7 +101,7 @@ public class addProductos {
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Datos de productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(10, 323, 813, 156);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		Label2 = new JLabel("Nombre:");
@@ -176,7 +170,7 @@ public class addProductos {
 		panel_3 = new JPanel();
 		panel_3.setBackground(Color.PINK);
 		panel_3.setBounds(0,0,846,48);
-		frame.getContentPane().add(panel_3);
+		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
 		Label8 = new JLabel("Inventario de productos");
@@ -188,7 +182,7 @@ public class addProductos {
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.PINK);
 		panel_2.setBounds(10, 489, 813, 58);
-		frame.getContentPane().add(panel_2);
+		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
 		Button3= new JButton("Regresar");
@@ -202,5 +196,7 @@ public class addProductos {
 		Button5 = new JButton("Borrar");
 		Button5.setBounds(607, 10, 93, 38);
 		panel_2.add(Button5);
+
 	}
+
 }

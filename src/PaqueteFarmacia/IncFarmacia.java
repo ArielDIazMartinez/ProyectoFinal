@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Productos.Productos;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JButton;
@@ -56,12 +59,8 @@ public class IncFarmacia extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			/*	
 				Productos products = new Productos();
 				products.setVisible(true);
-				this.dispose();
-				*/
-				
 				
 				
 			}
@@ -107,11 +106,8 @@ public class IncFarmacia extends JFrame {
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				/*	
 				Productos products = new Productos();
 				products.setVisible(true);
-				this.dispose();
-				*/
 				
 				
 			}

@@ -80,7 +80,8 @@ public class ProyectoFinal extends JFrame{
 
 					IncFarmacia farm = new IncFarmacia();
 					farm.setVisible(true);
-							
+					usser.setText("");
+					jpass.setText("");
 					
 				}else {
 					JOptionPane.showMessageDialog(null, "Usser or Password Incorrect","ERROR",
