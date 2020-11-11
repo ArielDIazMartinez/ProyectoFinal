@@ -20,6 +20,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Productos extends JFrame {
 
@@ -50,7 +53,8 @@ public class Productos extends JFrame {
 	 * Create the frame.
 	 */
 	public Productos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Asus\\Desktop\\images.ico"));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(850, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -150,6 +154,15 @@ public class Productos extends JFrame {
 		panel_1.add(comboBox);
 		
 		Button2 = new JButton("Nuevo");
+		Button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			TipoProductos produc = new TipoProductos();
+			produc.setVisible(true);
+			
+				
+			}
+		});
 		Button2.setBounds(265, 104, 135, 29);
 		panel_1.add(Button2);
 		

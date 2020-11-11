@@ -1,27 +1,30 @@
 package PrimerPaquete;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import PaqueteFarmacia.IncFarmacia;
-
-import java.awt.Font;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JMenu;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-public class ProyectoFinal extends JFrame{
+import PaqueteFarmacia.IncFarmacia;
+import java.awt.Window.Type;
 
-	private JFrame frmLogin;
+public class InicioSeccion extends JFrame {
+	
+	private JPanel contentPane;
 	JTextField usser;
 	JButton Button1,Cerrar;
 	JLabel Label1,Label2;
@@ -34,8 +37,8 @@ public class ProyectoFinal extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProyectoFinal window = new ProyectoFinal();
-					window.frmLogin.setVisible(true);
+					InicioSeccion frame = new InicioSeccion();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,40 +47,33 @@ public class ProyectoFinal extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
-	public ProyectoFinal() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmLogin = new JFrame();
-		frmLogin.setTitle("LOGIN");
-		frmLogin.getContentPane().setBackground(Color.BLACK);
-		frmLogin.setBounds(100, 100, 566, 219);
-		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmLogin.getContentPane().setLayout(null);
-		frmLogin.setResizable(false);
-		frmLogin.setLocationRelativeTo(null);
+	public InicioSeccion() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Asus\\Desktop\\images.ico"));
+		setTitle("LOGIN");
+		getContentPane().setBackground(Color.BLACK);
+		setBounds(100, 100, 566, 219);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getContentPane().setLayout(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		JButton INICIAR= new JButton("INICIAR");
 		INICIAR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
 				char[] array = jpass.getPassword();
 				String Contraseña = new String(array);
 
 				if (usser.getText().equals("admin") && Contraseña.equals("1234")) {
-					dispose();
 					
+					 
 					JOptionPane.showMessageDialog(null, "USUARIO ADMINISTRADOR INICIADO");
 				    JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
+					dispose();
 
+   
 					IncFarmacia farm = new IncFarmacia();
 					farm.setVisible(true);
 					usser.setText("");
@@ -88,19 +84,16 @@ public class ProyectoFinal extends JFrame{
 							JOptionPane.ERROR_MESSAGE);
 				}
 				
-				
 
 			}
-
-			
 				
 			
 		});
 	    INICIAR.setBackground(Color.BLACK);
 		INICIAR.setForeground(Color.RED);
 		INICIAR.setFont(new Font("Verdana", Font.BOLD, 14));
-		INICIAR.setBounds(416, 113, 124, 34);
-		frmLogin.getContentPane().add(INICIAR);
+		INICIAR.setBounds(391, 67, 124, 34);
+		getContentPane().add(INICIAR);
 		
 		Cerrar = new JButton("X");
 		Cerrar.addActionListener(new ActionListener() {
@@ -112,33 +105,113 @@ public class ProyectoFinal extends JFrame{
 		Cerrar.setBackground(Color.WHITE);
 		Cerrar.setForeground(Color.RED);
 		Cerrar.setFont(new Font("Verdana", Font.BOLD, 18));
-		Cerrar.setBounds(493, 0, 57, 37);
-		frmLogin.getContentPane().add(Cerrar);
+		Cerrar.setBounds(507, 0, 53, 37);
+		getContentPane().add(Cerrar);
 		
 		Label1 = new JLabel("USUARIO: ");
 		Label1.setForeground(Color.RED);
 		Label1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 		Label1.setBounds(54, 54, 103, 23);
-		frmLogin.getContentPane().add(Label1);
+		getContentPane().add(Label1);
 		
 		Label2 = new JLabel("CONTRASE\u00D1A :");
 		Label2.setForeground(Color.RED);
 		Label2.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 		Label2.setBounds(54, 88, 127, 28);
-		frmLogin.getContentPane().add(Label2);
+		getContentPane().add(Label2);
 		
 		usser = new JTextField();
 		usser.setBounds(185, 55, 150, 23);
-		frmLogin.getContentPane().add(usser);
+		getContentPane().add(usser);
 		usser.setColumns(10);
 		
 		jpass = new JPasswordField();
 		jpass.setBounds(185, 92, 150, 24);
-		frmLogin.getContentPane().add(jpass);
+		getContentPane().add(jpass);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 51, 255));
+		panel.setBounds(10, 11, 33, 26);
+		getContentPane().add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 51, 255));
+		panel_1.setBounds(65, 11, 33, 26);
+		getContentPane().add(panel_1);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(0, 51, 255));
+		panel_1_1.setBounds(124, 11, 33, 26);
+		getContentPane().add(panel_1_1);
+		
+		JPanel panel_1_2 = new JPanel();
+		panel_1_2.setBackground(new Color(0, 51, 255));
+		panel_1_2.setBounds(188, 11, 33, 26);
+		getContentPane().add(panel_1_2);
+		
+		JPanel panel_1_3 = new JPanel();
+		panel_1_3.setBackground(new Color(0, 51, 255));
+		panel_1_3.setBounds(257, 11, 33, 26);
+		getContentPane().add(panel_1_3);
+		
+		JPanel panel_1_4 = new JPanel();
+		panel_1_4.setBackground(new Color(0, 51, 255));
+		panel_1_4.setBounds(325, 11, 33, 26);
+		getContentPane().add(panel_1_4);
+		
+		JPanel panel_1_5 = new JPanel();
+		panel_1_5.setBackground(new Color(0, 51, 255));
+		panel_1_5.setBounds(391, 11, 33, 26);
+		getContentPane().add(panel_1_5);
+		
+		JPanel panel_1_6 = new JPanel();
+		panel_1_6.setBackground(new Color(0, 51, 255));
+		panel_1_6.setBounds(450, 11, 33, 26);
+		getContentPane().add(panel_1_6);
+		
+		JPanel panel_1_7 = new JPanel();
+		panel_1_7.setBackground(new Color(0, 51, 255));
+		panel_1_7.setBounds(10, 131, 33, 26);
+		getContentPane().add(panel_1_7);
+		
+		JPanel panel_1_8 = new JPanel();
+		panel_1_8.setBackground(new Color(0, 51, 255));
+		panel_1_8.setBounds(64, 131, 33, 26);
+		getContentPane().add(panel_1_8);
+		
+		JPanel panel_1_9 = new JPanel();
+		panel_1_9.setBackground(new Color(0, 51, 255));
+		panel_1_9.setBounds(124, 131, 33, 26);
+		getContentPane().add(panel_1_9);
+		
+		JPanel panel_1_10 = new JPanel();
+		panel_1_10.setBackground(new Color(0, 51, 255));
+		panel_1_10.setBounds(188, 131, 33, 26);
+		getContentPane().add(panel_1_10);
+		
+		JPanel panel_1_11 = new JPanel();
+		panel_1_11.setBackground(new Color(0, 51, 255));
+		panel_1_11.setBounds(257, 131, 33, 26);
+		getContentPane().add(panel_1_11);
+		
+		JPanel panel_1_12 = new JPanel();
+		panel_1_12.setBackground(new Color(0, 51, 255));
+		panel_1_12.setBounds(325, 131, 33, 26);
+		getContentPane().add(panel_1_12);
+		
+		JPanel panel_1_13 = new JPanel();
+		panel_1_13.setBackground(new Color(0, 51, 255));
+		panel_1_13.setBounds(391, 131, 33, 26);
+		getContentPane().add(panel_1_13);
+		
+		JPanel panel_1_14 = new JPanel();
+		panel_1_14.setBackground(new Color(0, 51, 255));
+		panel_1_14.setBounds(450, 131, 33, 26);
+		getContentPane().add(panel_1_14);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
-		frmLogin.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Menu");
 		mnNewMenu.setForeground(Color.BLACK);
@@ -187,3 +260,4 @@ public class ProyectoFinal extends JFrame{
 		mnNewMenu_1.add(btnNewButton_5);
 	}
 }
+
