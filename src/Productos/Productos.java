@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,9 +23,15 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
-public class Productos extends JFrame {
+public class Productos extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField textField1,textField2, textField3, textField4, textField5;
@@ -32,7 +39,8 @@ public class Productos extends JFrame {
 	private JButton Button1,Button2, Button3, Button4, Button5;
 	private JLabel  Label1, Label2,Label3, Label4,Label5,Label6,Label7,Label8;
 	private JPanel panel, panel_1,panel_2, panel_3;
-
+	private JDateChooser dateChooser;
+	private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -148,8 +156,8 @@ public class Productos extends JFrame {
 		Label6.setBounds(10, 109, 65, 16);
 		panel_1.add(Label6);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar"}));
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Analgecico"}));
 		comboBox.setBounds(90, 104, 163, 29);
 		panel_1.add(comboBox);
 		
@@ -176,7 +184,7 @@ public class Productos extends JFrame {
 		panel_1.add(textField5);
 		textField5.setColumns(10);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser();
 		dateChooser.setBounds(575, 65, 215, 29);
 		panel_1.add(dateChooser);
 		
@@ -205,11 +213,71 @@ public class Productos extends JFrame {
 		Button4 = new JButton("Guardar");
 		Button4.setBounds(710, 10, 93, 38);
 		panel_2.add(Button4);
+		Button4.addActionListener(this);
 		
 		Button5 = new JButton("Borrar");
 		Button5.setBounds(607, 10, 93, 38);
 		panel_2.add(Button5);
 
 	}
+     //ActionListener
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//guardar items
+		if(e.getSource()==Button4) {
+			 try {
+				 //var
+				 String Nombre=(textField2.getText()); 
+				 Float Precio=Float.parseFloat(textField4.getText());
+				 int Cantidad=Integer.parseInt(textField3.getText());
+				 Date date=(dateChooser.getDate());
+				 long d= date.getTime();
+				 java.sql.Date fecha=new java.sql.Date(d);
+				 String Tipo=comboBox.getSelectedItem().toString();
+				 String Descrip=(textField5.getText());
+				 
+				 //sql
+				 Class.forName("com.mysql.jdbc.Driver");
+				 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				 Statement stm=(Statement) Conexion.createStatement();
+				 int resultset=stm.executeUpdate("insert into inventario(Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion) values ('"+Nombre+"','"+Precio+"','"+Cantidad+"','"+fecha+"','"+Tipo+"','"+Descrip+"')");
+				 if(resultset>0) {
+				    	JOptionPane.showMessageDialog(null, "Medicamento Guardado con exito");
+				 }
+				 Conexion.close();
+				 textField3.setText("");
+				 textField4.setText("");
+				 textField5.setText("");
+		         
+			 }catch(ClassNotFoundException q) {
+		        	 q.printStackTrace();
+		        	 } catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+			       
+			
+		
+		}
+	    //buscar items
+		if(e.getSource()==Button4) {
+			try {
+			    String Buscar= (textField1.getText());
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				Statement stm=(Statement) Conexion.createStatement();
+				stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario where titulo='"+Buscar+"'");
+				//ResultSet resultset2 =stm.executeQuery("select titulo,descripcion from notas ");
+	            Conexion.close();
+	            }catch(ClassNotFoundException q) {
+	            	
+	            	q.printStackTrace();
+	            	} catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+		        
+	  }
+	  }
+		
+			
 
 }
