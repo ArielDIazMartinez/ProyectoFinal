@@ -36,11 +36,13 @@ public class Productos extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField textField1,textField2, textField3, textField4, textField5;
 	private JTable table;
-	private JButton Button1,Button2, Button3, Button4, Button5;
+	private JButton Button1,Button2, Button3, Button4, Button5, Button6;
 	private JLabel  Label1, Label2,Label3, Label4,Label5,Label6,Label7,Label8;
 	private JPanel panel, panel_1,panel_2, panel_3;
 	private JDateChooser dateChooser;
 	public JComboBox comboBox;
+	private DefaultTableModel model;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -95,19 +97,14 @@ public class Productos extends JFrame implements ActionListener {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nombre", "Precio", "Cantidad", "Fec. Ven.", "Tipo", "Descripcion"
-			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(115);
-		table.getColumnModel().getColumn(1).setPreferredWidth(94);
-		table.getColumnModel().getColumn(2).setPreferredWidth(113);
-		table.getColumnModel().getColumn(3).setPreferredWidth(96);
-		table.getColumnModel().getColumn(4).setPreferredWidth(88);
-		table.getColumnModel().getColumn(5).setPreferredWidth(147);
+		model =new DefaultTableModel();
+		table.setModel(model);
+		model.addColumn("Nombre");
+		model.addColumn("Precio");
+		model.addColumn("Cantidad");
+		model.addColumn("Fec. Ven.");
+		model.addColumn("Tipo");
+		model.addColumn("Descripcion");
 		scrollPane.setViewportView(table);
 		
 		panel_1 = new JPanel();
@@ -216,9 +213,14 @@ public class Productos extends JFrame implements ActionListener {
 		Button4.addActionListener(this);
 		
 		Button5 = new JButton("Borrar");
-		Button5.setBounds(607, 10, 93, 38);
+		Button5.setBounds(504, 10, 93, 38);
 		panel_2.add(Button5);
+		Button5.addActionListener(this);
 		
+		Button6 = new JButton("Actulizar ");
+		Button6.setBounds(607, 10, 93, 38);
+		panel_2.add(Button6);
+		Button6.addActionListener(this);
 		try {
 			 //var
 			 String Nom;
@@ -300,6 +302,41 @@ public class Productos extends JFrame implements ActionListener {
 	            		System.err.println("Error al listar los datos."+i.getMessage());
 	            	}
 		        
+	  }
+		//borrar cuadros de texto
+		if(e.getSource()==Button5) {
+			textField2.setText("");
+			textField3.setText("");
+			textField4.setText("");
+			textField5.setText("");
+		}
+		
+	   //actualizar items
+	  if(e.getSource()==Button6) {
+		  try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				Statement stm=(Statement) Conexion.createStatement();
+				ResultSet result =stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario ");
+	            String [] data= new String [6]; 
+				while (result.next()) {
+	            	data[0]=result.getString(1);
+	            	data[1]=result.getString(2);
+	            	data[2]=result.getString(3);
+	            	data[3]=result.getString(4);
+	            	data[4]=result.getString(5);
+	            	data[5]=result.getString(6);
+	            	model.addRow(data);
+	            }
+				
+				Conexion.close();
+	            }catch(ClassNotFoundException q) {
+	            	
+	            	q.printStackTrace();
+	            	} catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+		  
 	  }
 	  }
 		

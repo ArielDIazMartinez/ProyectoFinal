@@ -37,9 +37,11 @@ public class TipoProductos extends JFrame implements ActionListener {
 	private JPanel panel, panel_1;
 	private JLabel Label1,Label3,Label4,Label5;
 	private JTextField textField1,textField3,textField4;
-	private JButton Button1,Button2,Button3,Button4;
+	private JButton Button1,Button2,Button3,Button4,Button5;
 	private JTable table;
+	private DefaultTableModel model;
 	private JPanel panel_2;
+	private JButton btnNewButton;
 	
 
 	/**
@@ -95,8 +97,14 @@ public class TipoProductos extends JFrame implements ActionListener {
 		
 		Button4 = new JButton("Cancelar");
 		Button4.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button4.setBounds(361, 11, 118, 49);
+		Button4.setBounds(233, 11, 118, 49);
 		panel_1.add(Button4);
+		
+		Button5 = new JButton("Actulizar");
+		Button5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		Button5.setBounds(361, 12, 118, 50);
+		panel_1.add(Button5);
+		Button5.addActionListener(this);
 		
 		panel = new JPanel();
 		panel.setBackground(Color.PINK);
@@ -130,18 +138,14 @@ public class TipoProductos extends JFrame implements ActionListener {
 		Button1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 68, 591, 123);
+		scrollPane.setBounds(10, 68, 591, 173);
 		panel_2.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				
-			},
-			new String[] {
-				"Nombre","Descripcion"
-			}
-		));
+		model =new DefaultTableModel();
+		table.setModel(model);
+		model.addColumn("Nombre");
+		model.addColumn("Descripcion");
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_3 = new JPanel();
@@ -226,7 +230,28 @@ public class TipoProductos extends JFrame implements ActionListener {
 	            	}
 		
 		
-	}	
+	}
+	//actulizar lista
+	if(e.getSource()==Button5) {
+		try {
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			 Statement stm=(Statement) Conexion.createStatement();
+			 ResultSet result =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos");
+			 String [] data= new String [2]; 
+			 while (result.next()) {
+	            	data[0]=result.getString(1);
+ 	            	data[1]=result.getString(2);
+	            	model.addRow(data);
+	            }
+			 Conexion.close();
+			 
+		 }catch(ClassNotFoundException q) {
+	        	 q.printStackTrace();
+	        	 } catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+	}
 	
 	}
 	
