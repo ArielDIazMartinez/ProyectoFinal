@@ -40,7 +40,7 @@ public class Productos extends JFrame implements ActionListener {
 	private JLabel  Label1, Label2,Label3, Label4,Label5,Label6,Label7,Label8;
 	private JPanel panel, panel_1,panel_2, panel_3;
 	private JDateChooser dateChooser;
-	private JComboBox comboBox;
+	public JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -196,7 +196,7 @@ public class Productos extends JFrame implements ActionListener {
 		
 		Label8 = new JLabel("Inventario de productos");
 		Label8.setHorizontalAlignment(SwingConstants.CENTER);
-		Label8.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		Label8.setFont(new Font("Tahoma", Font.BOLD, 26));
 		Label8.setBounds(10, 10, 826, 28);
 		panel_3.add(Label8);
 		
@@ -218,11 +218,36 @@ public class Productos extends JFrame implements ActionListener {
 		Button5 = new JButton("Borrar");
 		Button5.setBounds(607, 10, 93, 38);
 		panel_2.add(Button5);
-
+		
+		try {
+			 //var
+			 String Nom;
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			 Statement stm=(Statement) Conexion.createStatement();
+			 ResultSet resultset2 =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos");
+			 while(resultset2.next()){
+	             Nom=resultset2.getString("Nombre"); 
+	             getComboBox(Nom);
+	         }
+			 Conexion.close();
+			 
+		 }catch(ClassNotFoundException q) {
+	        	 q.printStackTrace();
+	        	 } catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+	
+		
 	}
+	public void getComboBox(String Nombre){
+		comboBox.addItem(Nombre);
+	}
+	
      //ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		//guardar items
 		if(e.getSource()==Button4) {
 			 try {
