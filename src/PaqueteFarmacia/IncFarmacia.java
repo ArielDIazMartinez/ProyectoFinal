@@ -5,8 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Cliente.Cliente;
 import PrimerPaquete.InicioSeccion;
+import Productos.GenerarVentas;
 import Productos.Productos;
+import Productos.TipoProductos;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JButton;
@@ -69,6 +74,15 @@ public class IncFarmacia extends JFrame {
 		mnNewMenu_1.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Tipo de Producto");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TipoProductos producs = new TipoProductos();
+				producs.setVisible(true);
+				
+				
+			}
+		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_1.add(btnNewButton_2);
 		
@@ -85,10 +99,31 @@ public class IncFarmacia extends JFrame {
 		menuBar.add(mnNewMenu_2);
 		
 		JButton btnNewButton_4 = new JButton("Registrar ventas");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				GenerarVentas vents = new GenerarVentas();
+				vents.setVisible(true);
+				
+				
+				
+			}
+		});
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_2.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("Clientes                 ");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				Cliente cli = new Cliente();
+				cli.setVisible(true);
+				
+				
+			}
+		});
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_2.add(btnNewButton_5);
 		
@@ -123,21 +158,33 @@ public class IncFarmacia extends JFrame {
 				
 			}
 		});
-		btnNewButton_8.setBounds(478, 108, 138, 45);
+		btnNewButton_8.setBounds(10, 124, 138, 45);
 		contentPane.add(btnNewButton_8);
 		
 		JButton btnNewButton_9 = new JButton("CLIENTES");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Cliente cli = new Cliente();
+				cli.setVisible(true);
+				
+				
+			}
+		});
 		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_9.setBounds(29, 108, 138, 45);
+		btnNewButton_9.setBounds(10, 179, 138, 45);
 		contentPane.add(btnNewButton_9);
 		
 		JButton btnNewButton_10 = new JButton("GENERAR VENTA");
 		btnNewButton_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				GenerarVentas vents = new GenerarVentas();
+				vents.setVisible(true);
 			}
 		});
-		btnNewButton_10.setBounds(252, 108, 138, 45);
+		btnNewButton_10.setBounds(10, 67, 138, 45);
 		contentPane.add(btnNewButton_10);
 		
 		JButton btnNewButton = new JButton("X");

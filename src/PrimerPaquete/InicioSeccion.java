@@ -52,7 +52,7 @@ public class InicioSeccion extends JFrame {
 	public InicioSeccion() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Asus\\Desktop\\images.ico"));
 		setTitle("LOGIN");
-		getContentPane().setBackground(Color.BLACK);
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(100, 100, 566, 219);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -89,8 +89,8 @@ public class InicioSeccion extends JFrame {
 				
 			
 		});
-	    INICIAR.setBackground(Color.BLACK);
-		INICIAR.setForeground(Color.RED);
+	    INICIAR.setBackground(Color.WHITE);
+		INICIAR.setForeground(Color.BLACK);
 		INICIAR.setFont(new Font("Verdana", Font.BOLD, 14));
 		INICIAR.setBounds(391, 67, 124, 34);
 		getContentPane().add(INICIAR);
@@ -103,19 +103,19 @@ public class InicioSeccion extends JFrame {
 			}
 		});
 		Cerrar.setBackground(Color.WHITE);
-		Cerrar.setForeground(Color.RED);
+		Cerrar.setForeground(Color.BLACK);
 		Cerrar.setFont(new Font("Verdana", Font.BOLD, 18));
 		Cerrar.setBounds(507, 0, 53, 37);
 		getContentPane().add(Cerrar);
 		
 		Label1 = new JLabel("USUARIO: ");
-		Label1.setForeground(Color.RED);
+		Label1.setForeground(Color.BLACK);
 		Label1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 		Label1.setBounds(54, 54, 103, 23);
 		getContentPane().add(Label1);
 		
 		Label2 = new JLabel("CONTRASE\u00D1A :");
-		Label2.setForeground(Color.RED);
+		Label2.setForeground(Color.BLACK);
 		Label2.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 15));
 		Label2.setBounds(54, 88, 127, 28);
 		getContentPane().add(Label2);
@@ -129,86 +129,6 @@ public class InicioSeccion extends JFrame {
 		jpass.setBounds(185, 92, 150, 24);
 		getContentPane().add(jpass);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 51, 255));
-		panel.setBounds(10, 11, 33, 26);
-		getContentPane().add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 51, 255));
-		panel_1.setBounds(65, 11, 33, 26);
-		getContentPane().add(panel_1);
-		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBackground(new Color(0, 51, 255));
-		panel_1_1.setBounds(124, 11, 33, 26);
-		getContentPane().add(panel_1_1);
-		
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBackground(new Color(0, 51, 255));
-		panel_1_2.setBounds(188, 11, 33, 26);
-		getContentPane().add(panel_1_2);
-		
-		JPanel panel_1_3 = new JPanel();
-		panel_1_3.setBackground(new Color(0, 51, 255));
-		panel_1_3.setBounds(257, 11, 33, 26);
-		getContentPane().add(panel_1_3);
-		
-		JPanel panel_1_4 = new JPanel();
-		panel_1_4.setBackground(new Color(0, 51, 255));
-		panel_1_4.setBounds(325, 11, 33, 26);
-		getContentPane().add(panel_1_4);
-		
-		JPanel panel_1_5 = new JPanel();
-		panel_1_5.setBackground(new Color(0, 51, 255));
-		panel_1_5.setBounds(391, 11, 33, 26);
-		getContentPane().add(panel_1_5);
-		
-		JPanel panel_1_6 = new JPanel();
-		panel_1_6.setBackground(new Color(0, 51, 255));
-		panel_1_6.setBounds(450, 11, 33, 26);
-		getContentPane().add(panel_1_6);
-		
-		JPanel panel_1_7 = new JPanel();
-		panel_1_7.setBackground(new Color(0, 51, 255));
-		panel_1_7.setBounds(10, 131, 33, 26);
-		getContentPane().add(panel_1_7);
-		
-		JPanel panel_1_8 = new JPanel();
-		panel_1_8.setBackground(new Color(0, 51, 255));
-		panel_1_8.setBounds(64, 131, 33, 26);
-		getContentPane().add(panel_1_8);
-		
-		JPanel panel_1_9 = new JPanel();
-		panel_1_9.setBackground(new Color(0, 51, 255));
-		panel_1_9.setBounds(124, 131, 33, 26);
-		getContentPane().add(panel_1_9);
-		
-		JPanel panel_1_10 = new JPanel();
-		panel_1_10.setBackground(new Color(0, 51, 255));
-		panel_1_10.setBounds(188, 131, 33, 26);
-		getContentPane().add(panel_1_10);
-		
-		JPanel panel_1_11 = new JPanel();
-		panel_1_11.setBackground(new Color(0, 51, 255));
-		panel_1_11.setBounds(257, 131, 33, 26);
-		getContentPane().add(panel_1_11);
-		
-		JPanel panel_1_12 = new JPanel();
-		panel_1_12.setBackground(new Color(0, 51, 255));
-		panel_1_12.setBounds(325, 131, 33, 26);
-		getContentPane().add(panel_1_12);
-		
-		JPanel panel_1_13 = new JPanel();
-		panel_1_13.setBackground(new Color(0, 51, 255));
-		panel_1_13.setBounds(391, 131, 33, 26);
-		getContentPane().add(panel_1_13);
-		
-		JPanel panel_1_14 = new JPanel();
-		panel_1_14.setBackground(new Color(0, 51, 255));
-		panel_1_14.setBounds(450, 131, 33, 26);
-		getContentPane().add(panel_1_14);
-		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
@@ -221,7 +141,7 @@ public class InicioSeccion extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JOptionPane.showInternalMessageDialog(null, "Usuario: Admin  " + "Password: firestorm");
+				JOptionPane.showInternalMessageDialog(null, "Usuario: Admin  " + "Password: 1234");
 				
 			}
 		});
