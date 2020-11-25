@@ -85,6 +85,15 @@ public class TipoProductos extends JFrame implements ActionListener {
 		panel_1.setLayout(null);
 		
 		Button2 = new JButton("Regresar");
+		Button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Productos produc = new Productos();
+				produc.setVisible(true);
+				dispose();
+				
+			}
+		});
 		Button2.setBounds(23, 11, 108, 49);
 		panel_1.add(Button2);
 		Button2.setFont(new Font("Tahoma", Font.BOLD, 14));

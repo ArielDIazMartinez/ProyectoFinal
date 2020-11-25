@@ -164,6 +164,7 @@ public class Productos extends JFrame implements ActionListener {
 				
 			TipoProductos produc = new TipoProductos();
 			produc.setVisible(true);
+			dispose();
 			
 				
 			}
