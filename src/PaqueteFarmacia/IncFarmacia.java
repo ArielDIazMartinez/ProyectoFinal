@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Calculadora.Calculador;
 import Cliente.Cliente;
 import PrimerPaquete.InicioSeccion;
 import Productos.GenerarVentas;
@@ -132,6 +133,18 @@ public class IncFarmacia extends JFrame {
 		menuBar.add(mnNewMenu_3);
 		
 		JButton btnNewButton_6 = new JButton("Calculadora");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Calculador cli = new Calculador();
+				cli.setVisible(true);
+				
+				
+				
+				
+				
+			}
+		});
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_3.add(btnNewButton_6);
 		
