@@ -41,7 +41,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel panel_2;
-	private JButton btnNewButton;
+	
 	
 
 	/**
@@ -153,8 +153,8 @@ public class TipoProductos extends JFrame implements ActionListener {
 		table = new JTable();
 		model =new DefaultTableModel();
 		table.setModel(model);
-		model.addColumn("Nombre");
-		model.addColumn("Descripcion");
+		model.addColumn("NOMBRE");
+		model.addColumn("DESCRIPCION");
 		scrollPane.setViewportView(table);
 		
 		JPanel panel_3 = new JPanel();
@@ -243,11 +243,15 @@ public class TipoProductos extends JFrame implements ActionListener {
 	//actulizar lista
 	if(e.getSource()==Button5) {
 		try {
+			model =new DefaultTableModel();
+			table.setModel(model);
+			model.addColumn("NOMBRE");
+			model.addColumn("DESCRIPCION");
+			String [] data= new String [2];
 			 Class.forName("com.mysql.jdbc.Driver");
 			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
 			 Statement stm=(Statement) Conexion.createStatement();
 			 ResultSet result =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos");
-			 String [] data= new String [2]; 
 			 while (result.next()) {
 	            	data[0]=result.getString(1);
  	            	data[1]=result.getString(2);

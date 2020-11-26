@@ -99,12 +99,12 @@ public class Productos extends JFrame implements ActionListener {
 		table = new JTable();
 		model =new DefaultTableModel();
 		table.setModel(model);
-		model.addColumn("Nombre");
-		model.addColumn("Precio");
-		model.addColumn("Cantidad");
-		model.addColumn("Fec. Ven.");
-		model.addColumn("Tipo");
-		model.addColumn("Descripcion");
+		model.addColumn("NOMBRE");
+		model.addColumn("PRECIO");
+		model.addColumn("CANTIDAD");
+		model.addColumn("FEC. VEN.");
+		model.addColumn("TIPO");
+		model.addColumn("DESCRIPCION");
 		scrollPane.setViewportView(table);
 		
 		panel_1 = new JPanel();
@@ -315,6 +315,14 @@ public class Productos extends JFrame implements ActionListener {
 	   //actualizar items
 	  if(e.getSource()==Button6) {
 		  try {
+			    model =new DefaultTableModel();
+				table.setModel(model);
+				model.addColumn("NOMBRE");
+				model.addColumn("PRECIO");
+				model.addColumn("CANTIDAD");
+				model.addColumn("FEC. VEN.");
+				model.addColumn("TIPO");
+				model.addColumn("DESCRIPCION");
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
 				Statement stm=(Statement) Conexion.createStatement();
