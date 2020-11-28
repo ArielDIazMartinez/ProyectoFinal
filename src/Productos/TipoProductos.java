@@ -145,6 +145,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		Button1.setBounds(508, 22, 93, 25);
 		panel_2.add(Button1);
 		Button1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		Button1.addActionListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 68, 591, 173);

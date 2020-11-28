@@ -293,7 +293,7 @@ public class Productos extends JFrame implements ActionListener {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
 				Statement stm=(Statement) Conexion.createStatement();
-				stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario where titulo='"+Buscar+"'");
+				stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario where Nombre='"+Buscar+"'");
 				//ResultSet resultset2 =stm.executeQuery("select titulo,descripcion from notas ");
 	            Conexion.close();
 	            }catch(ClassNotFoundException q) {

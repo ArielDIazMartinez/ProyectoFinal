@@ -53,6 +53,7 @@ public class IncFarmacia extends JFrame {
 		setTitle("Inc.Farmacia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 801, 754);
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
