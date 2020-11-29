@@ -36,7 +36,7 @@ public class Productos extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField textField1,textField2, textField3, textField4, textField5;
 	private JTable table;
-	private JButton Button1,Button2, Button3, Button4, Button5, Button6;
+	private JButton Button1,Button2, Button3, Button4, Button5, Button6,Button7;
 	private JLabel  Label1, Label2,Label3, Label4,Label5,Label6,Label7,Label8;
 	private JPanel panel, panel_1,panel_2, panel_3;
 	private JDateChooser dateChooser;
@@ -222,6 +222,12 @@ public class Productos extends JFrame implements ActionListener {
 		Button6.setBounds(607, 10, 93, 38);
 		panel_2.add(Button6);
 		Button6.addActionListener(this);
+		
+        Button7 = new JButton("Cancelar");
+        Button7.setBounds(396, 10, 98, 38);
+		panel_2.add(Button7);
+		Button7.addActionListener(this);
+		
 		try {
 			 //var
 			 String Nom;
@@ -304,12 +310,16 @@ public class Productos extends JFrame implements ActionListener {
 	            	}
 		        
 	  }
-		//borrar cuadros de texto
+		//cancelar los datos escritos
+		if(e.getSource()==Button7) {
+		   textField2.setText("");
+		   textField3.setText("");
+		   textField4.setText("");
+		   textField5.setText("");
+				}
+		//borrar datos de tabla
 		if(e.getSource()==Button5) {
-			textField2.setText("");
-			textField3.setText("");
-			textField4.setText("");
-			textField5.setText("");
+			
 		}
 		
 	   //actualizar items
@@ -348,7 +358,4 @@ public class Productos extends JFrame implements ActionListener {
 		  
 	  }
 	  }
-		
-			
-
 }

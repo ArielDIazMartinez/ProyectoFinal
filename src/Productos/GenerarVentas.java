@@ -210,7 +210,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		
 		Button8 = new JButton("Actualizar");
 		Button8.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button8.setBounds(459, 12, 133, 53);
+		Button8.setBounds(459, 10, 133, 53);
 		panel_4.add(Button8);
 		Button8.addActionListener(this);
 		
