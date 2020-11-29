@@ -91,6 +91,7 @@ public class Productos extends JFrame implements ActionListener {
 		Button1 = new JButton("Buscar ");
 		Button1.setBounds(671, 23, 114, 39);
 		panel.add(Button1);
+		Button1.addActionListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(32, 72, 753, 167);
@@ -227,30 +228,11 @@ public class Productos extends JFrame implements ActionListener {
         Button7.setBounds(396, 10, 98, 38);
 		panel_2.add(Button7);
 		Button7.addActionListener(this);
-		
-		try {
-			 //var
-			 String Nom;
-			 Class.forName("com.mysql.jdbc.Driver");
-			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-			 Statement stm=(Statement) Conexion.createStatement();
-			 ResultSet resultset2 =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos");
-			 while(resultset2.next()){
-	             Nom=resultset2.getString("Nombre"); 
-	             getComboBox(Nom);
-	         }
-			 Conexion.close();
-			 
-		 }catch(ClassNotFoundException q) {
-	        	 q.printStackTrace();
-	        	 } catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	            	}
+		 
+		ActualizarItems();
+
 	
 		
-	}
-	public void getComboBox(String Nombre){
-		comboBox.addItem(Nombre);
 	}
 	
      //ActionListener
@@ -293,23 +275,10 @@ public class Productos extends JFrame implements ActionListener {
 		
 		}
 	    //buscar items
-		if(e.getSource()==Button4) {
-			try {
-			    String Buscar= (textField1.getText());
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-				Statement stm=(Statement) Conexion.createStatement();
-				stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario where Nombre='"+Buscar+"'");
-				//ResultSet resultset2 =stm.executeQuery("select titulo,descripcion from notas ");
-	            Conexion.close();
-	            }catch(ClassNotFoundException q) {
-	            	
-	            	q.printStackTrace();
-	            	} catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	            	}
+		if(e.getSource()==Button1) {
+		 BuscarItems();	
 		        
-	  }
+	     }
 		//cancelar los datos escritos
 		if(e.getSource()==Button7) {
 		   textField2.setText("");
@@ -324,38 +293,88 @@ public class Productos extends JFrame implements ActionListener {
 		
 	   //actualizar items
 	  if(e.getSource()==Button6) {
-		  try {
-			    model =new DefaultTableModel();
-				table.setModel(model);
-				model.addColumn("NOMBRE");
-				model.addColumn("PRECIO");
-				model.addColumn("CANTIDAD");
-				model.addColumn("FEC. VEN.");
-				model.addColumn("TIPO");
-				model.addColumn("DESCRIPCION");
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-				Statement stm=(Statement) Conexion.createStatement();
-				ResultSet result =stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario ");
-	            String [] data= new String [6]; 
-				while (result.next()) {
-	            	data[0]=result.getString(1);
-	            	data[1]=result.getString(2);
-	            	data[2]=result.getString(3);
-	            	data[3]=result.getString(4);
-	            	data[4]=result.getString(5);
-	            	data[5]=result.getString(6);
-	            	model.addRow(data);
-	            }
-				
-				Conexion.close();
-	            }catch(ClassNotFoundException q) {
-	            	
-	            	q.printStackTrace();
-	            	} catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	            	}
-		  
+		  ActualizarItems();
+	       }
 	  }
-	  }
+	
+	//metodos 
+     
+	//getdatos comboBox	
+	public void getComboBox(String Nombre){
+		comboBox.addItem(Nombre);
+	}
+	
+	//Actualizar items
+	public void ActualizarItems() {
+		try {
+		    model =new DefaultTableModel();
+			table.setModel(model);
+			model.addColumn("NOMBRE");
+			model.addColumn("PRECIO");
+			model.addColumn("CANTIDAD");
+			model.addColumn("FEC. VEN.");
+			model.addColumn("TIPO");
+			model.addColumn("DESCRIPCION");
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			ResultSet result =stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario ");
+            String [] data= new String [6]; 
+			while (result.next()) {
+            	data[0]=result.getString(1);
+            	data[1]=result.getString(2);
+            	data[2]=result.getString(3);
+            	data[3]=result.getString(4);
+            	data[4]=result.getString(5);
+            	data[5]=result.getString(6);
+            	model.addRow(data);
+            }
+			
+			Conexion.close();
+            }catch(ClassNotFoundException q) {
+            	
+            	q.printStackTrace();
+            	} catch(SQLException i) {
+            		System.err.println("Error al listar los datos."+i.getMessage());
+            	}
+	        }
+	     //metodo buscar items
+	     public void BuscarItems () {
+	    	 try {
+		    		model =new DefaultTableModel();
+		 			table.setModel(model);
+		 			model.addColumn("NOMBRE");
+		 			model.addColumn("PRECIO");
+		 			model.addColumn("CANTIDAD");
+		 			model.addColumn("FEC. VEN.");
+		 			model.addColumn("TIPO");
+		 			model.addColumn("DESCRIPCION");
+				    String Buscar= (textField1.getText());
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+					Statement stm=(Statement) Conexion.createStatement();
+					ResultSet result=stm.executeQuery("select Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion from inventario where Nombre='"+Buscar+"'");
+					String [] data= new String [6]; 
+					while (result.next()) {
+		            	data[0]=result.getString(1);
+		            	data[1]=result.getString(2);
+		            	data[2]=result.getString(3);
+		            	data[3]=result.getString(4);
+		            	data[4]=result.getString(5);
+		            	data[5]=result.getString(6);
+		            	model.addRow(data);
+		            }
+					
+		            Conexion.close();
+		            }catch(ClassNotFoundException q) {
+		            	
+		            	q.printStackTrace();
+		            	} catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+	     }
+	
+	
+	
+	
 }

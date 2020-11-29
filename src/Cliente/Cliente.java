@@ -193,6 +193,9 @@ public class Cliente extends JFrame implements ActionListener {
 		panel_3.add(Button6);
 		Button6.addActionListener(this);
 		
+		
+		ActualizarClientes();
+		
 	}
 	
 	@Override
@@ -200,33 +203,7 @@ public class Cliente extends JFrame implements ActionListener {
 		
 		//Buscar clientes 
 		if(e.getSource()==Button1) {
-			try {
-			//var
-			String Nom=textField1.getText();
-			String [] data= new String [5]; 
-			
-			
-			//sql
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-			Statement stm=(Statement) Conexion.createStatement();
-			ResultSet result =stm.executeQuery("select Nombre,Apellidos,RNC,Correo,Telefono from clientes where Nombre='"+Nom+"'");
-			 while(result.next()){
-				 data[0]=result.getString(1);
-	             data[1]=result.getString(2);
-	             data[2]=result.getString(3);
-	             data[3]=result.getString(4);
-	             data[4]=result.getString(5);
-	             model.addRow(data);
-	         }
-			Conexion.close();
-			textField1.setText("");
-	         
-		 }catch(ClassNotFoundException q) {
-	        	 q.printStackTrace();
-	        	 } catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	            	}
+			BuscarCliente();
 		}
 		
 		//guardar cliente
@@ -265,36 +242,7 @@ public class Cliente extends JFrame implements ActionListener {
 	    
 	    //actualizar datos        	
 		if(e.getSource()==Button3) {
-			try {
-			    model =new DefaultTableModel();
-				table.setModel(model);
-				model.addColumn("NOMBRE");
-				model.addColumn("APELLIDOS");
-				model.addColumn("RNC");
-				model.addColumn("CORREO");
-				model.addColumn("TELEFONO");
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-				Statement stm=(Statement) Conexion.createStatement();
-				ResultSet result =stm.executeQuery("select Nombre,Apellidos,RNC,Correo,Telefono from clientes ");
-	            String [] data= new String [5]; 
-				while (result.next()) {
-	            	data[0]=result.getString(1);
-	            	data[1]=result.getString(2);
-	            	data[2]=result.getString(3);
-	            	data[3]=result.getString(4);
-	            	data[4]=result.getString(5);
-	            	model.addRow(data);
-	            }
-				
-				Conexion.close();
-	            }catch(ClassNotFoundException q) {
-	            	
-	            	q.printStackTrace();
-	            	} catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	            	}
-			
+			ActualizarClientes();
 		}
 		
 		//cancelar datos
@@ -306,11 +254,77 @@ public class Cliente extends JFrame implements ActionListener {
 			textField6.setText("");
 		}
 				
-				
-			
-			
-		    
 		}
+	//metodos 
+	
+	//metodo actualizar 
+	public void ActualizarClientes() {
+		try {
+		    model =new DefaultTableModel();
+			table.setModel(model);
+			model.addColumn("NOMBRE");
+			model.addColumn("APELLIDOS");
+			model.addColumn("RNC");
+			model.addColumn("CORREO");
+			model.addColumn("TELEFONO");
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			ResultSet result =stm.executeQuery("select Nombre,Apellidos,RNC,Correo,Telefono from clientes ");
+            String [] data= new String [5]; 
+			while (result.next()) {
+            	data[0]=result.getString(1);
+            	data[1]=result.getString(2);
+            	data[2]=result.getString(3);
+            	data[3]=result.getString(4);
+            	data[4]=result.getString(5);
+            	model.addRow(data);
+            }
+			
+			Conexion.close();
+            }catch(ClassNotFoundException q) {
+            	
+            	q.printStackTrace();
+            	} catch(SQLException i) {
+            		System.err.println("Error al listar los datos."+i.getMessage());
+            	}
+	}
+	public void BuscarCliente() {
+		try {
+			//var
+			String Nom=textField1.getText();
+			String [] data= new String [5]; 
+			model =new DefaultTableModel();
+			table.setModel(model);
+			model.addColumn("NOMBRE");
+			model.addColumn("APELLIDOS");
+			model.addColumn("RNC");
+			model.addColumn("CORREO");
+			model.addColumn("TELEFONO");
+			
+			//sql
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			ResultSet result =stm.executeQuery("select Nombre,Apellidos,RNC,Correo,Telefono from clientes where Nombre='"+Nom+"'");
+			 while(result.next()){
+				 data[0]=result.getString(1);
+	             data[1]=result.getString(2);
+	             data[2]=result.getString(3);
+	             data[3]=result.getString(4);
+	             data[4]=result.getString(5);
+	             model.addRow(data);
+	         }
+			Conexion.close();
+			textField1.setText("");
+	         
+		 }catch(ClassNotFoundException q) {
+	        	 q.printStackTrace();
+	        	 } catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+	}
+	
 		
 		
 	}

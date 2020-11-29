@@ -111,7 +111,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		
 		Button5 = new JButton("Actulizar");
 		Button5.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button5.setBounds(361, 12, 118, 50);
+		Button5.setBounds(361, 11, 118, 49);
 		panel_1.add(Button5);
 		Button5.addActionListener(this);
 		
@@ -178,6 +178,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		textField3.setBounds(99, 21, 500, 20);
 		panel_3.add(textField3);
 		textField3.setColumns(10);
+		ActulizarTipos();
 	}
 
 	@Override
@@ -243,6 +244,15 @@ public class TipoProductos extends JFrame implements ActionListener {
 	}
 	//actulizar lista
 	if(e.getSource()==Button5) {
+		ActulizarTipos();
+	}
+	
+	}
+	
+	//metodos
+	
+	//actualizar tipos de datos
+	public void ActulizarTipos() {
 		try {
 			model =new DefaultTableModel();
 			table.setModel(model);
@@ -265,8 +275,6 @@ public class TipoProductos extends JFrame implements ActionListener {
 	        	 } catch(SQLException i) {
 	            		System.err.println("Error al listar los datos."+i.getMessage());
 	            	}
-	}
-	
 	}
 	
 }
