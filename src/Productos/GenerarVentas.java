@@ -149,6 +149,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		Button3.setBounds(391, 25, 115, 37);
 		panel_2.add(Button3);
 		Button3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		Button3.addActionListener(this);
 		
 		Button4 = new JButton("NUEVO");
 		Button4.setBounds(534, 25, 107, 37);
@@ -232,6 +233,10 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		//agregar
 		if(e.getSource()==Button2) {
 			PasarDatos();
+		}
+		//agregar de cliente
+		if(e.getSource()==Button3) {
+			PasarCliente();
 		}
 	
 	}
@@ -359,7 +364,37 @@ public class GenerarVentas extends JFrame implements ActionListener {
         	data[4]=textField2.getText();
 			model2.addRow(data);
 	    }
-	
-	
-	
+	    //pasar datos clientes a la segunda tabla
+	    public void PasarCliente() {
+	    	try {
+	    	model2 =new DefaultTableModel();
+			table_1.setModel(model2);
+			model2.addColumn("CLIENTE");
+			model2.addColumn("RNC");
+			model2.addColumn("PRODUCTO");
+			model2.addColumn("PRECIO");
+			model2.addColumn("CANTIDAD");
+			String cliente=comboBox.getSelectedItem().toString();
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			ResultSet result =stm.executeQuery("select Nombre,RNC from clientes where Nombre='"+cliente+"' ");
+			while (result.next()) {
+            	data[0]=result.getString(1);
+            	data[1]=result.getString(2);
+			    model2.addRow(data);
+			}
+			Conexion.close();
+            }catch(ClassNotFoundException q) {
+            	
+            	q.printStackTrace();
+            	} catch(SQLException i) {
+            		System.err.println("Error al listar los datos."+i.getMessage());
+            	}
+	    }
+	    
 }
+	
+	
+	
+

@@ -342,6 +342,8 @@ public class Productos extends JFrame implements ActionListener {
 		            		System.err.println("Error al listar los datos."+i.getMessage());
 		            	}
 	     }
+	     
+	     //guardar items en al base de datos
 	     public void GuardarItems() {
 	    	 try {
 				 //var

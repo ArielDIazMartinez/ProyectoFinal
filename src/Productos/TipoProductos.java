@@ -220,15 +220,20 @@ public class TipoProductos extends JFrame implements ActionListener {
 		try {
 			 //var
 			 String Nombre=(textField1.getText()); 			
-			 String Nom, Desc;
+			 model =new DefaultTableModel();
+			 table.setModel(model);
+			 model.addColumn("NOMBRE");
+			 model.addColumn("DESCRIPCION");
+			 String [] data= new String [2]; 
 			 //sql
 			 Class.forName("com.mysql.jdbc.Driver");
 			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
 			 Statement stm=(Statement) Conexion.createStatement();
-			 ResultSet resultset =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos where Nombre='"+Nombre+"'");
-			 while(resultset.next()){
-	             Nom=resultset.getString("Nombre"); 
-	             Desc=resultset.getString("Descripcion"); 
+			 ResultSet result =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos where Nombre='"+Nombre+"'");
+			 while(result.next()){
+				 data[0]=result.getString(1);
+	             data[1]=result.getString(2);
+	             model.addRow(data);
 	         }
 					 
 			 Conexion.close();
