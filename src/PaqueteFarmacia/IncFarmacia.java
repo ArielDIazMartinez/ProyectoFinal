@@ -204,7 +204,7 @@ public class IncFarmacia extends JFrame {
 		JButton btnNewButton = new JButton("X");
 		btnNewButton.setForeground(Color.RED);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 25));
-		btnNewButton.setBounds(732, 0, 53, 45);
+		btnNewButton.setBounds(638, 10, 53, 45);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
