@@ -241,38 +241,7 @@ public class Productos extends JFrame implements ActionListener {
 		
 		//guardar items
 		if(e.getSource()==Button4) {
-			 try {
-				 //var
-				 String Nombre=(textField2.getText()); 
-				 Float Precio=Float.parseFloat(textField4.getText());
-				 int Cantidad=Integer.parseInt(textField3.getText());
-				 Date date=(dateChooser.getDate());
-				 long d= date.getTime();
-				 java.sql.Date fecha=new java.sql.Date(d);
-				 String Tipo=comboBox.getSelectedItem().toString();
-				 String Descrip=(textField5.getText());
-				 
-				 //sql
-				 Class.forName("com.mysql.jdbc.Driver");
-				 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-				 Statement stm=(Statement) Conexion.createStatement();
-				 int resultset=stm.executeUpdate("insert into inventario(Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion) values ('"+Nombre+"','"+Precio+"','"+Cantidad+"','"+fecha+"','"+Tipo+"','"+Descrip+"')");
-				 if(resultset>0) {
-				    	JOptionPane.showMessageDialog(null, "Medicamento Guardado con exito");
-				 }
-				 Conexion.close();
-				 textField3.setText("");
-				 textField4.setText("");
-				 textField5.setText("");
-		         
-			 }catch(ClassNotFoundException q) {
-		        	 q.printStackTrace();
-		        	 } catch(SQLException i) {
-		            		System.err.println("Error al listar los datos."+i.getMessage());
-		            	}
-			       
-			
-		
+			GuardarItems(); 
 		}
 	    //buscar items
 		if(e.getSource()==Button1) {
@@ -373,7 +342,37 @@ public class Productos extends JFrame implements ActionListener {
 		            		System.err.println("Error al listar los datos."+i.getMessage());
 		            	}
 	     }
-	
+	     public void GuardarItems() {
+	    	 try {
+				 //var
+				 String Nombre=(textField2.getText()); 
+				 Float Precio=Float.parseFloat(textField4.getText());
+				 int Cantidad=Integer.parseInt(textField3.getText());
+				 Date date=(dateChooser.getDate());
+				 long d= date.getTime();
+				 java.sql.Date fecha=new java.sql.Date(d);
+				 String Tipo=comboBox.getSelectedItem().toString();
+				 String Descrip=(textField5.getText());
+				 
+				 //sql
+				 Class.forName("com.mysql.jdbc.Driver");
+				 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				 Statement stm=(Statement) Conexion.createStatement();
+				 int resultset=stm.executeUpdate("insert into inventario(Nombre,Precio,Cantidad,Fecha_vencimiento,Tipo,Descripcion) values ('"+Nombre+"','"+Precio+"','"+Cantidad+"','"+fecha+"','"+Tipo+"','"+Descrip+"')");
+				 if(resultset>0) {
+				    	JOptionPane.showMessageDialog(null, "Medicamento Guardado con exito");
+				 }
+				 Conexion.close();
+				 textField3.setText("");
+				 textField4.setText("");
+				 textField5.setText("");
+		         
+			 }catch(ClassNotFoundException q) {
+		        	 q.printStackTrace();
+		        	 } catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+	     }
 	
 	
 	

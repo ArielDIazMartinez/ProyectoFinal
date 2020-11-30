@@ -193,7 +193,6 @@ public class Cliente extends JFrame implements ActionListener {
 		panel_3.add(Button6);
 		Button6.addActionListener(this);
 		
-		
 		ActualizarClientes();
 		
 	}
@@ -208,36 +207,7 @@ public class Cliente extends JFrame implements ActionListener {
 		
 		//guardar cliente
 		if(e.getSource()==Button2) {
-			try { 
-				//var
-				String n,a,c;
-				int r,t;
-				n=textField2.getText();
-				a=textField3.getText();
-				r=Integer.parseInt(textField4.getText());
-				c=textField5.getText();
-				t=Integer.parseInt(textField6.getText());
-				
-				//sql
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
-				Statement stm=(Statement) Conexion.createStatement();
-				int resultset=stm.executeUpdate("insert into clientes(Nombre,Apellidos,RNC,Correo,Telefono) values ('"+n+"','"+a+"','"+r+"','"+c+"','"+t+"')");
-				if(resultset>0) {
-				    	JOptionPane.showMessageDialog(null, "Cliente guardado con exito");
-				 }
-				Conexion.close();
-				textField2.setText("");
-				textField3.setText("");
-				textField4.setText("");
-				textField5.setText("");
-				textField6.setText("");
-				
-			}catch(ClassNotFoundException q) {
-	        	 q.printStackTrace();
-	        	 } catch(SQLException i) {
-	            		System.err.println("Error al listar los datos."+i.getMessage());
-	        	 }
+			GuardarClientes();
 		}
 	    
 	    //actualizar datos        	
@@ -257,6 +227,39 @@ public class Cliente extends JFrame implements ActionListener {
 		}
 	//metodos 
 	
+	//guardar clientes
+	public void GuardarClientes() {
+		try { 
+			//var
+			String n,a,c;
+			int r,t;
+			n=textField2.getText();
+			a=textField3.getText();
+			r=Integer.parseInt(textField4.getText());
+			c=textField5.getText();
+			t=Integer.parseInt(textField6.getText());
+			
+			//sql
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			int resultset=stm.executeUpdate("insert into clientes(Nombre,Apellidos,RNC,Correo,Telefono) values ('"+n+"','"+a+"','"+r+"','"+c+"','"+t+"')");
+			if(resultset>0) {
+			    	JOptionPane.showMessageDialog(null, "Cliente guardado con exito");
+			 }
+			Conexion.close();
+			textField2.setText("");
+			textField3.setText("");
+			textField4.setText("");
+			textField5.setText("");
+			textField6.setText("");
+			
+		}catch(ClassNotFoundException q) {
+        	 q.printStackTrace();
+        	 } catch(SQLException i) {
+            		System.err.println("Error al listar los datos."+i.getMessage());
+        	 }
+	}
 	//metodo actualizar 
 	public void ActualizarClientes() {
 		try {
