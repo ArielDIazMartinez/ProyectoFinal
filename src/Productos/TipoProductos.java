@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class TipoProductos extends JFrame implements ActionListener {
 
@@ -79,7 +80,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		contentPane.add(Label3);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.PINK);
+		panel_1.setBackground(SystemColor.textHighlight);
 		panel_1.setBounds(10, 429, 611, 70);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -116,7 +117,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		Button5.addActionListener(this);
 		
 		panel = new JPanel();
-		panel.setBackground(Color.PINK);
+		panel.setBackground(SystemColor.textHighlight);
 		panel.setBounds(0, 0, 649, 49);
 		contentPane.add(panel);
 		

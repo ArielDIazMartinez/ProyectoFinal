@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import java.awt.SystemColor;
 
 public class Cliente extends JFrame implements ActionListener {
 
@@ -67,7 +68,7 @@ public class Cliente extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBackground(Color.PINK);
+		panel.setBackground(SystemColor.textHighlight);
 		panel.setBounds(0, 0, 846, 52);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -164,7 +165,7 @@ public class Cliente extends JFrame implements ActionListener {
 		textField6.setColumns(10);
 		
 		panel_3 = new JPanel();
-		panel_3.setBackground(Color.PINK);
+		panel_3.setBackground(SystemColor.textHighlight);
 		panel_3.setBounds(10, 398, 814, 78);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);

@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class Productos extends JFrame implements ActionListener {
 
@@ -188,7 +189,7 @@ public class Productos extends JFrame implements ActionListener {
 		panel_1.add(dateChooser);
 		
 		panel_3 = new JPanel();
-		panel_3.setBackground(Color.PINK);
+		panel_3.setBackground(SystemColor.textHighlight);
 		panel_3.setBounds(0,0,846,48);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
@@ -200,7 +201,7 @@ public class Productos extends JFrame implements ActionListener {
 		panel_3.add(Label8);
 		
 		panel_2 = new JPanel();
-		panel_2.setBackground(Color.PINK);
+		panel_2.setBackground(SystemColor.textHighlight);
 		panel_2.setBounds(10, 489, 813, 58);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);

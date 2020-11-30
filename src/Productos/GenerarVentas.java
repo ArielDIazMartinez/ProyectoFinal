@@ -2,12 +2,15 @@ package Productos;
 
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +31,8 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.SystemColor;
+
 
 public class GenerarVentas extends JFrame implements ActionListener {
 
@@ -36,10 +41,13 @@ public class GenerarVentas extends JFrame implements ActionListener {
 	private JTextField textField1,textField2,textField3;
 	private JTable table;
 	public JTable table_1;
-	private JButton Button1,Button2,Button3,Button4,Button5,Button6,Button7,Button8;
+	private JButton Button1,Button2,Button4,Button5,Button6,Button7,Button8;
 	private DefaultTableModel model,model2;
 	private JComboBox comboBox ;
 	String [] data= new String [5];
+	float total=0;
+	private JPanel panel_5;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +77,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.PINK);
+		panel.setBackground(SystemColor.textHighlight);
 		panel.setBounds(0, 0, 913, 73);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -102,14 +110,8 @@ public class GenerarVentas extends JFrame implements ActionListener {
 	    Button1.setFont(new Font("Tahoma", Font.BOLD, 14));
 	    Button1.addActionListener(this);
 		
-		Button2= new JButton("AGREGAR");
-		Button2.setBounds(741, 12, 127, 37);
-		panel_1.add(Button2);
-		Button2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button2.addActionListener(this);
-		
 		textField2 = new JTextField();
-		textField2.setBounds(626, 20, 105, 26);
+		textField2.setBounds(626, 20, 242, 26);
 		panel_1.add(textField2);
 		textField2.setColumns(10);
 		
@@ -135,7 +137,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Buscar cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(10, 354, 878, 91);
+		panel_2.setBounds(10, 354, 558, 91);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -145,14 +147,8 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"CLIENTES"}));
 		
-		Button3= new JButton("AGREGAR");
-		Button3.setBounds(391, 25, 115, 37);
-		panel_2.add(Button3);
-		Button3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button3.addActionListener(this);
-		
 		Button4 = new JButton("NUEVO");
-		Button4.setBounds(534, 25, 107, 37);
+		Button4.setBounds(397, 25, 107, 37);
 		panel_2.add(Button4);
 		Button4.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
@@ -188,7 +184,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		textField3.setColumns(10);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.PINK);
+		panel_4.setBackground(SystemColor.textHighlight);
 		panel_4.setBounds(10, 697, 878, 73);
 		contentPane.add(panel_4);
 		panel_4.setLayout(null);
@@ -197,6 +193,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		Button5.setBounds(740, 10, 128, 53);
 		panel_4.add(Button5);
 		Button5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		Button5.addActionListener(this);
 		
 		Button6 = new JButton("BORRAR");
 		Button6.setBounds(602, 10, 128, 53);
@@ -214,6 +211,19 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		Button8.setBounds(459, 10, 133, 53);
 		panel_4.add(Button8);
 		Button8.addActionListener(this);
+		
+		panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(null, "Agregar producto y cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBounds(593, 354, 294, 91);
+		contentPane.add(panel_5);
+		panel_5.setLayout(null);
+		
+		Button2= new JButton("AGREGAR");
+		Button2.setBounds(82, 33, 127, 37);
+		panel_5.add(Button2);
+		Button2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		Button2.addActionListener(this);
+		
 		
 		Actualizar();
 		getClientes();
@@ -233,10 +243,17 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		//agregar
 		if(e.getSource()==Button2) {
 			PasarDatos();
+			data[0]=("");
+        	data[1]=("");
+			data[2]=("");
+        	data[3]=("");
+        	data[4]=("");
+        	textField2.setText("");
+        	textField3.setText(Float.toString(total));
 		}
-		//agregar de cliente
-		if(e.getSource()==Button3) {
-			PasarCliente();
+		//subir factura a la base de datos
+		if(e.getSource()==Button5) {
+			SubirFacturas();
 		}
 	
 	}
@@ -349,31 +366,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 	    }
 	    //PasarDatos
 	    public void PasarDatos() {
-	    	model2 =new DefaultTableModel();
-			table_1.setModel(model2);
-			model2.addColumn("CLIENTE");
-			model2.addColumn("RNC");
-			model2.addColumn("PRODUCTO");
-			model2.addColumn("PRECIO");
-			model2.addColumn("CANTIDAD");
-			int row=table.getSelectedRow();
-			String Nom=table.getValueAt(row,0).toString();
-			String Precio=table.getValueAt(row,1).toString();
-			data[2]=Nom;
-        	data[3]=Precio;
-        	data[4]=textField2.getText();
-			model2.addRow(data);
-	    }
-	    //pasar datos clientes a la segunda tabla
-	    public void PasarCliente() {
 	    	try {
-	    	model2 =new DefaultTableModel();
-			table_1.setModel(model2);
-			model2.addColumn("CLIENTE");
-			model2.addColumn("RNC");
-			model2.addColumn("PRODUCTO");
-			model2.addColumn("PRECIO");
-			model2.addColumn("CANTIDAD");
 			String cliente=comboBox.getSelectedItem().toString();
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
@@ -382,6 +375,12 @@ public class GenerarVentas extends JFrame implements ActionListener {
 			while (result.next()) {
             	data[0]=result.getString(1);
             	data[1]=result.getString(2);
+            	int row=table.getSelectedRow();
+    			String Nom=table.getValueAt(row,0).toString();
+    			String Precio=table.getValueAt(row,1).toString();
+    			data[2]=Nom;
+            	data[3]=Precio;
+            	data[4]=textField2.getText();
 			    model2.addRow(data);
 			}
 			Conexion.close();
@@ -391,6 +390,42 @@ public class GenerarVentas extends JFrame implements ActionListener {
             	} catch(SQLException i) {
             		System.err.println("Error al listar los datos."+i.getMessage());
             	}
+	    	
+	    	int cont=table.getSelectedRow();
+	    	total+=Float.parseFloat(table_1.getValueAt(cont,3).toString());
+	    	
+	    }
+	    
+	    //subir facturas a la base de datos
+	    public void SubirFacturas() {
+	    	int cont= table_1.getRowCount();
+	    	for(int row=0; row<cont; row++) {
+	    		 try {
+	    	String Cliente=table_1.getValueAt(row,0).toString();
+			int RNC=Integer.parseInt(table_1.getValueAt(row,1).toString());
+			String Producto=table_1.getValueAt(row,2).toString();
+			float Precio=Float.parseFloat(table_1.getValueAt(row,3).toString());
+			int Cantidad= Integer.parseInt(table_1.getValueAt(row,4).toString());
+	    	//sql
+			Class.forName("com.mysql.jdbc.Driver");
+			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			 Statement stm=(Statement) Conexion.createStatement();
+			 int resultset=stm.executeUpdate("insert into generar_ventas(Cliente,RNC,Producto,Precio,Cantidad) values ('"+Cliente+"','"+RNC+"','"+Producto+"','"+Precio+"','"+Cantidad+"')");
+			 Conexion.close();
+	    		 }catch(ClassNotFoundException q) {
+		        	 q.printStackTrace();
+		        	 } catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+	    	}
+			 JOptionPane.showMessageDialog(null, "Venta generada con exito");
+			 model2 =new DefaultTableModel();
+				table_1.setModel(model2);
+				model2.addColumn("CLIENTE");
+				model2.addColumn("RNC");
+				model2.addColumn("PRODUCTO");
+				model2.addColumn("PRECIO");
+				model2.addColumn("CANTIDAD");
 	    }
 	    
 }
