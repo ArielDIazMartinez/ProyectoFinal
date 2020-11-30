@@ -257,7 +257,8 @@ public class Productos extends JFrame implements ActionListener {
 				}
 		//borrar datos de tabla
 		if(e.getSource()==Button5) {
-			
+			BorrarItem();
+			ActualizarItems();
 		}
 		
 	   //actualizar items
@@ -368,6 +369,27 @@ public class Productos extends JFrame implements ActionListener {
 				 textField3.setText("");
 				 textField4.setText("");
 				 textField5.setText("");
+		         
+			 }catch(ClassNotFoundException q) {
+		        	 q.printStackTrace();
+		        	 } catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+	     }
+	     public void BorrarItem() {
+	    	 try {
+	    		 int row=table.getSelectedRow();
+	 			 String Nom=table.getValueAt(row,0).toString();
+				 Class.forName("com.mysql.jdbc.Driver");
+				 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				 Statement stm=(Statement) Conexion.createStatement();
+				 int resultset=stm.executeUpdate("delete from inventario where Nombre='"+Nom+"'");
+				 if(resultset>0) {
+				    	JOptionPane.showMessageDialog(null, "Medicamento Borrado con exito");
+				 }
+				
+				 Conexion.close();
+				 
 		         
 			 }catch(ClassNotFoundException q) {
 		        	 q.printStackTrace();
