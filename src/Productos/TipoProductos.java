@@ -17,6 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import PaqueteFarmacia.IncFarmacia;
+
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JSeparator;
@@ -38,7 +41,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 	private JPanel panel, panel_1;
 	private JLabel Label1,Label3,Label4,Label5;
 	private JTextField textField1,textField3,textField4;
-	private JButton Button1,Button2,Button3,Button4,Button5;
+	private JButton Button1,Button2,Button3,Button4,Button5,btnBorrar;
 	private JTable table;
 	private DefaultTableModel model;
 	private JPanel panel_2;
@@ -89,13 +92,12 @@ public class TipoProductos extends JFrame implements ActionListener {
 		Button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Productos produc = new Productos();
-				produc.setVisible(true);
-				dispose();
+				IncFarmacia vents = new IncFarmacia();
+				vents.setVisible(true);
 				
 			}
 		});
-		Button2.setBounds(23, 11, 108, 49);
+		Button2.setBounds(10, 11, 108, 49);
 		panel_1.add(Button2);
 		Button2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
@@ -107,14 +109,22 @@ public class TipoProductos extends JFrame implements ActionListener {
 		
 		Button4 = new JButton("Cancelar");
 		Button4.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Button4.setBounds(233, 11, 118, 49);
+		Button4.setBounds(243, 11, 108, 49);
 		panel_1.add(Button4);
 		
 		Button5 = new JButton("Actulizar");
 		Button5.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Button5.setBounds(361, 11, 118, 49);
-		panel_1.add(Button5);
 		Button5.addActionListener(this);
+		panel_1.add(Button5);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnBorrar.setBounds(125, 11, 108, 49);
+		panel_1.add(btnBorrar);
+		btnBorrar.addActionListener(this);
+		
+		
 		
 		panel = new JPanel();
 		panel.setBackground(SystemColor.textHighlight);
@@ -253,6 +263,19 @@ public class TipoProductos extends JFrame implements ActionListener {
 		ActulizarTipos();
 	}
 	
+	
+	
+	
+	//Borrar de la tabla lista
+		if(e.getSource()==btnBorrar) {
+			
+			BorrarItem();
+			ActulizarTipos();
+		}
+	
+	
+	
+	
 	}
 	
 	//metodos
@@ -283,4 +306,28 @@ public class TipoProductos extends JFrame implements ActionListener {
 	            	}
 	}
 	
+	
+	
+    public void BorrarItem() {
+    	
+   	 try {
+   		 int row=table.getSelectedRow();
+			 String Nom=table.getValueAt(row,0).toString();
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			 Statement stm=(Statement) Conexion.createStatement();
+			 int resultset=stm.executeUpdate("delete from tipos_medicamentos where Nombre='"+Nom+"'");
+			 if(resultset>0) {
+			    	JOptionPane.showMessageDialog(null, "Tipo De Medicamento Borrado con exito");
+			 }
+			
+			 Conexion.close();
+			 
+	         
+		 }catch(ClassNotFoundException q) {
+	        	 q.printStackTrace();
+	        	 } catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+    }
 }

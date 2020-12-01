@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import Calculadora.Calculador;
 import Cliente.Cliente;
 import PrimerPaquete.InicioSeccion;
+import Productos.FacturaVenta;
 import Productos.GenerarVentas;
 import Productos.Productos;
 import Productos.TipoProductos;
@@ -23,6 +24,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+import java.awt.SystemColor;
 
 public class IncFarmacia extends JFrame {
 
@@ -53,7 +55,7 @@ public class IncFarmacia extends JFrame {
 		setTitle("Inc.Farmacia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 801, 754);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		// setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -88,10 +90,19 @@ public class IncFarmacia extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_1.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Lista de Ventas   ");
+		JButton btnNewButton_3 = new JButton("Factura de Ventas   ");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				FacturaVenta vents = new FacturaVenta();
+				vents.setVisible(true);
+				
+				
+				
+				
+				
 			}
 		});
 		mnNewMenu_1.add(btnNewButton_3);
@@ -157,11 +168,12 @@ public class IncFarmacia extends JFrame {
 		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		mnNewMenu_4.add(btnNewButton_7);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.textHighlight);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnNewButton_8 = new JButton("PRODUCTOS");
+		btnNewButton_8.setBounds(289, 179, 138, 45);
 		btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,10 +184,11 @@ public class IncFarmacia extends JFrame {
 				
 			}
 		});
-		btnNewButton_8.setBounds(10, 124, 138, 45);
+		contentPane.setLayout(null);
 		contentPane.add(btnNewButton_8);
 		
 		JButton btnNewButton_9 = new JButton("CLIENTES");
+		btnNewButton_9.setBounds(10, 179, 138, 45);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -186,10 +199,10 @@ public class IncFarmacia extends JFrame {
 			}
 		});
 		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnNewButton_9.setBounds(10, 179, 138, 45);
 		contentPane.add(btnNewButton_9);
 		
 		JButton btnNewButton_10 = new JButton("GENERAR VENTA");
+		btnNewButton_10.setBounds(553, 179, 138, 45);
 		btnNewButton_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -198,13 +211,12 @@ public class IncFarmacia extends JFrame {
 				vents.setVisible(true);
 			}
 		});
-		btnNewButton_10.setBounds(10, 67, 138, 45);
 		contentPane.add(btnNewButton_10);
 		
 		JButton btnNewButton = new JButton("X");
+		btnNewButton.setBounds(722, 11, 53, 45);
 		btnNewButton.setForeground(Color.RED);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 25));
-		btnNewButton.setBounds(638, 10, 53, 45);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

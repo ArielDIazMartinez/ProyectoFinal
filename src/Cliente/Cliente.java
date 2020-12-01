@@ -23,6 +23,10 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import PaqueteFarmacia.IncFarmacia;
+import Productos.FacturaVenta;
+
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 
@@ -59,7 +63,7 @@ public class Cliente extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Cliente() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(850,530 );
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -186,6 +190,14 @@ public class Cliente extends JFrame implements ActionListener {
 		Button4.addActionListener(this);
 		
 		Button5 = new JButton("Regresar");
+		Button5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IncFarmacia vents = new IncFarmacia();
+				vents.setVisible(true);
+				
+				
+			}
+		});
 		Button5.setBounds(10, 10, 91, 58);
 		panel_3.add(Button5);
 		
@@ -215,6 +227,16 @@ public class Cliente extends JFrame implements ActionListener {
 		if(e.getSource()==Button3) {
 			ActualizarClientes();
 		}
+		
+		
+		//Borrar datos        	
+				if(e.getSource()==Button4) {
+					BorrarDatos();
+					ActualizarClientes();
+					
+				}
+		
+		
 		
 		//cancelar datos
 		if(e.getSource()==Button6) {
@@ -329,7 +351,31 @@ public class Cliente extends JFrame implements ActionListener {
 	            	}
 	}
 	
+	 public void BorrarDatos() {
+	    	
+	    	try {
+	    		 int row=table.getSelectedRow();
+	 			 String Nom=table.getValueAt(row,0).toString();
+				 Class.forName("com.mysql.jdbc.Driver");
+				 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+				 Statement stm=(Statement) Conexion.createStatement();
+				 int resultset=stm.executeUpdate("delete from clientes where Nombre='"+Nom+"'");
+				 if(resultset>0) {
+				    	JOptionPane.showMessageDialog(null, " Borrado con exito");
+				 }
+				
+				 Conexion.close();
+				 
+		         
+			 }catch(ClassNotFoundException q) {
+		        	 q.printStackTrace();
+		        	 } catch(SQLException i) {
+		            		System.err.println("Error al listar los datos."+i.getMessage());
+		            	}
+	
 		
 		
 	}
+}
+
 

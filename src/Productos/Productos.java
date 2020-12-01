@@ -21,6 +21,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+
+import PaqueteFarmacia.IncFarmacia;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -207,6 +210,13 @@ public class Productos extends JFrame implements ActionListener {
 		panel_2.setLayout(null);
 		
 		Button3= new JButton("Regresar");
+		Button3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				IncFarmacia vents = new IncFarmacia();
+				vents.setVisible(true);
+			}
+		});
 		Button3.setBounds(10, 10, 99, 38);
 		panel_2.add(Button3);
 		

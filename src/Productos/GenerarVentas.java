@@ -31,6 +31,9 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import PaqueteFarmacia.IncFarmacia;
+
 import java.awt.SystemColor;
 
 
@@ -202,6 +205,15 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		Button6.addActionListener(this);
 		
 		Button7 = new JButton("REGRESAR");
+		Button7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				IncFarmacia vents = new IncFarmacia();
+				vents.setVisible(true);
+				
+				
+			}
+		});
 		Button7.setBounds(24, 12, 139, 49);
 		panel_4.add(Button7);
 		Button7.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -255,20 +267,20 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		if(e.getSource()==Button5) {
 			SubirFacturas();
 		}
+		
+		
+		
+		//BorrarDatos
+		
+		if(e.getSource()==Button6) {
+			Actualizar();
+			BorrarDatos();
+
+			
+		}
+		
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	//metodos
@@ -426,6 +438,26 @@ public class GenerarVentas extends JFrame implements ActionListener {
 				model2.addColumn("PRODUCTO");
 				model2.addColumn("PRECIO");
 				model2.addColumn("CANTIDAD");
+	    }
+	    
+	    
+	    public void BorrarDatos() {
+	    	
+	    	int fila = table_1.getSelectedRow();
+	    	
+	    	if (fila>= 0) {
+				
+	    		model2.removeRow(fila);
+	    		
+	    		
+			}else {
+	    	
+				JOptionPane.showMessageDialog(null, "Selecciona la Fila");
+	    	
+	    	}
+	    
+	    	
+	    	
 	    }
 	    
 }

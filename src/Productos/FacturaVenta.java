@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import PaqueteFarmacia.IncFarmacia;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -53,7 +56,7 @@ public class FacturaVenta extends JFrame {
 	 * Create the frame.
 	 */
 	public FacturaVenta() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(650, 450);
 		setResizable(false);
@@ -124,6 +127,14 @@ public class FacturaVenta extends JFrame {
 		panel_2.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Regresar");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				IncFarmacia vents = new IncFarmacia();
+				vents.setVisible(true);
+				
+			}
+		});
 		btnNewButton_3.setBounds(10, 10, 100, 44);
 		panel_2.add(btnNewButton_3);
 		ActualizarFacturas();
