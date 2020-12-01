@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
@@ -123,6 +124,37 @@ public class FacturaVenta extends JFrame {
 		panel_2.setLayout(null);
 		
 		JButton btnNewButton_2 = new JButton("Borrar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				try {
+		    		 int row=table.getSelectedRow();
+		 			 String Nom=table.getValueAt(row,0).toString();
+					 Class.forName("com.mysql.jdbc.Driver");
+					 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+					 Statement stm=(Statement) Conexion.createStatement();
+					 int resultset=stm.executeUpdate("delete from generar_ventas where Cliente='"+Nom+"'");
+					 if(resultset>0) {
+					    	JOptionPane.showMessageDialog(null, " Borrado con exito");
+					 }
+					
+					 Conexion.close();
+					 
+			         
+				 }catch(ClassNotFoundException q) {
+			        	 q.printStackTrace();
+			        	 } catch(SQLException i) {
+			            		System.err.println("Error al listar los datos."+i.getMessage());
+			            	}
+				
+				
+				
+				ActualizarFacturas();
+				
+				
+			}
+		});
 		btnNewButton_2.setBounds(504, 10, 101, 44);
 		panel_2.add(btnNewButton_2);
 		
@@ -206,6 +238,28 @@ public class FacturaVenta extends JFrame {
         		System.err.println("Error al listar los datos."+i.getMessage());
         	}
 	}
-	
-	
+	 public void BorrarDatos() {
+	    	
+		 try {
+    		 int row=table.getSelectedRow();
+ 			 String Nom=table.getValueAt(row,0).toString();
+			 Class.forName("com.mysql.jdbc.Driver");
+			 Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			 Statement stm=(Statement) Conexion.createStatement();
+			 int resultset=stm.executeUpdate("delete from generar_ventas where CLIENTE='"+Nom+"'");
+			 if(resultset>0) {
+			    	JOptionPane.showMessageDialog(null, " Borrado con exito");
+			 }
+			
+			 Conexion.close();
+			 
+	         
+		 }catch(ClassNotFoundException q) {
+	        	 q.printStackTrace();
+	        	 } catch(SQLException i) {
+	            		System.err.println("Error al listar los datos."+i.getMessage());
+	            	}
+
+
+	 }
 }
