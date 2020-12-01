@@ -73,6 +73,7 @@ public class IncFarmacia extends JFrame {
 				
 				Productos products = new Productos();
 				products.setVisible(true);
+				dispose();
 				
 				
 			}
@@ -100,6 +101,7 @@ public class IncFarmacia extends JFrame {
 				
 				FacturaVenta vents = new FacturaVenta();
 				vents.setVisible(true);
+				dispose();
 				
 				
 				
@@ -182,6 +184,7 @@ public class IncFarmacia extends JFrame {
 				
 				Productos products = new Productos();
 				products.setVisible(true);
+				dispose();
 				
 				
 			}
@@ -196,6 +199,7 @@ public class IncFarmacia extends JFrame {
 				
 				Cliente cli = new Cliente();
 				cli.setVisible(true);
+				dispose();
 				
 				
 			}
@@ -211,6 +215,7 @@ public class IncFarmacia extends JFrame {
 				
 				GenerarVentas vents = new GenerarVentas();
 				vents.setVisible(true);
+				dispose();
 			}
 		});
 		contentPane.add(btnNewButton_10);

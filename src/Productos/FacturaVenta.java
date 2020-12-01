@@ -57,7 +57,7 @@ public class FacturaVenta extends JFrame {
 	 * Create the frame.
 	 */
 	public FacturaVenta() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(650, 450);
 		setResizable(false);
@@ -162,8 +162,12 @@ public class FacturaVenta extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				
+				
 				IncFarmacia vents = new IncFarmacia();
 				vents.setVisible(true);
+				dispose();
 				
 			}
 		});

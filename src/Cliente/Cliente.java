@@ -192,9 +192,10 @@ public class Cliente extends JFrame implements ActionListener {
 		Button5 = new JButton("Regresar");
 		Button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				IncFarmacia vents = new IncFarmacia();
 				vents.setVisible(true);
-				
+				dispose();
 				
 			}
 		});
