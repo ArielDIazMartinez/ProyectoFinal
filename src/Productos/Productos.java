@@ -215,7 +215,7 @@ public class Productos extends JFrame implements ActionListener {
 				
 				IncFarmacia vents = new IncFarmacia();
 				vents.setVisible(true);
-			}
+				dispose();			}
 		});
 		Button3.setBounds(10, 10, 99, 38);
 		panel_2.add(Button3);
