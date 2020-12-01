@@ -254,13 +254,13 @@ public class Cliente extends JFrame implements ActionListener {
 	public void GuardarClientes() {
 		try { 
 			//var
-			String n,a,c;
-			int r,t;
+			String n,a,c,t;
+			int r;
 			n=textField2.getText();
 			a=textField3.getText();
 			r=Integer.parseInt(textField4.getText());
 			c=textField5.getText();
-			t=Integer.parseInt(textField6.getText());
+			t=textField6.getText();
 			
 			//sql
 			Class.forName("com.mysql.jdbc.Driver");

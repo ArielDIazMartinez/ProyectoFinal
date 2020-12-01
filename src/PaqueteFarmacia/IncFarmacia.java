@@ -54,8 +54,10 @@ public class IncFarmacia extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Asus\\Desktop\\images.ico"));
 		setTitle("Inc.Farmacia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 801, 754);
-		// setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setSize(801, 745);
+		setResizable(false);
+		setLocationRelativeTo(null);
+
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

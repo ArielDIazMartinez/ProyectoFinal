@@ -266,6 +266,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 		//subir factura a la base de datos
 		if(e.getSource()==Button5) {
 			SubirFacturas();
+			textField3.setText("");
 		}
 		
 		
@@ -442,7 +443,7 @@ public class GenerarVentas extends JFrame implements ActionListener {
 	    
 	    
 	    public void BorrarDatos() {
-	    	
+	    	textField3.setText("");
 	    	int fila = table_1.getSelectedRow();
 	    	
 	    	if (fila>= 0) {

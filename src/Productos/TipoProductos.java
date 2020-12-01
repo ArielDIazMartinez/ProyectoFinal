@@ -91,11 +91,7 @@ public class TipoProductos extends JFrame implements ActionListener {
 		Button2 = new JButton("Regresar");
 		Button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				IncFarmacia vents = new IncFarmacia();
-				vents.setVisible(true);
-				
-			}
+				System.exit(0);}
 		});
 		Button2.setBounds(10, 11, 108, 49);
 		panel_1.add(Button2);
@@ -211,11 +207,6 @@ public class TipoProductos extends JFrame implements ActionListener {
 				    	JOptionPane.showMessageDialog(null, "Tipo de medicamento guardado con exito");
 				 }
 				 ResultSet resultset2 =stm.executeQuery("select Nombre,Descripcion from tipos_medicamentos");
-				 while(resultset2.next()){
-		             Nom=resultset2.getString("Nombre"); 
-		             p.getComboBox(Nom);
-		         }
-						 
 				 Conexion.close();
 				 textField3.setText("");
 				 textField4.setText("");

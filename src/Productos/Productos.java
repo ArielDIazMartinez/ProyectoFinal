@@ -159,7 +159,7 @@ public class Productos extends JFrame implements ActionListener {
 		panel_1.add(Label6);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar", "Analgecico"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccionar"}));
 		comboBox.setBounds(90, 104, 163, 29);
 		panel_1.add(comboBox);
 		
@@ -241,7 +241,7 @@ public class Productos extends JFrame implements ActionListener {
 		Button7.addActionListener(this);
 		 
 		ActualizarItems();
-
+		getComboBox();
 	
 		
 	}
@@ -275,14 +275,29 @@ public class Productos extends JFrame implements ActionListener {
 	   //actualizar items
 	  if(e.getSource()==Button6) {
 		  ActualizarItems();
+		  getComboBox();
 	       }
 	  }
 	
 	//metodos 
      
 	//getdatos comboBox	
-	public void getComboBox(String Nombre){
-		comboBox.addItem(Nombre);
+	public void getComboBox(){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection Conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/farmacia","root","");
+			Statement stm=(Statement) Conexion.createStatement();
+			ResultSet result =stm.executeQuery("select Nombre from tipos_medicamentos");
+			while(result.next()){
+			comboBox.addItem(result.getString("Nombre"));
+			}
+			Conexion.close();
+	        }catch(ClassNotFoundException q) {
+	        	
+	        	q.printStackTrace();
+	        	} catch(SQLException i) {
+	        		System.err.println("Error al listar los datos."+i.getMessage());
+	        	}
 	}
 	
 	//Actualizar items
@@ -377,6 +392,7 @@ public class Productos extends JFrame implements ActionListener {
 				    	JOptionPane.showMessageDialog(null, "Medicamento Guardado con exito");
 				 }
 				 Conexion.close();
+				 textField2.setText("");
 				 textField3.setText("");
 				 textField4.setText("");
 				 textField5.setText("");
